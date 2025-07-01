@@ -13,27 +13,34 @@ body {
   max-width: 29rem;
   min-height: 43rem;
   margin: 8rem auto;
-  padding: 7.3rem 3rem 2rem 3rem;
+  // padding: 7.3rem 3rem 2rem 3rem;
   display: flex;
   flex-direction: column;
   border-radius: 1.8rem;
+  overflow: hidden;
 }
 
 .calculator {
   &-screen {
     background-color: yellowgreen;
     height: 5.8rem;
-    margin-bottom: $mg-btn-small;
+    margin: 7.3rem 3rem $mg-btn-small 3rem;
   }
 
   &-keyboard {
     background-color: #fff;
     padding: 1.5rem 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   &-btns {
     background-color: lightblue;
     display: grid;
-    grid-template-columns: repeat(5, 1fr) 3rem;
+    grid-template-columns: repeat(4, 1fr);
+    flex: 1;
+    gap: 1rem;
+    padding: 2rem 1rem;
   }
 }
