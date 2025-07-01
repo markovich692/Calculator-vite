@@ -9,9 +9,12 @@ body {
 }
 
 .container {
-  background-color:orangered;
+  background-color: orangered;
   max-width: 40rem;
-  min-height: 60rem;
-  margin:8rem auto;
-  
+  min-height: 50rem;
+  margin: 8rem auto;
+  padding: 4rem 4rem;
+  display: grid;
+  grid-template-columns: 2rem repeat(4, 1fr) 2rem;
+  grid-template-rows: repeat(12, 1fr);
 }
