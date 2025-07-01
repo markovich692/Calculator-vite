@@ -10,12 +10,23 @@ body {
 
 .container {
   background-color: orangered;
-  max-width: 40rem;
-  min-height: 50rem;
+  max-width: 29rem;
+  min-height: 43rem;
   margin: 8rem auto;
-  padding: 2.5rem 2rem;
-  display: grid;
-  grid-template-columns: 3rem repeat(4, 1fr) 3rem;
-  grid-template-rows: repeat(12, 1fr);
+  padding: 7.3rem 3rem 2rem 3rem;
+  display: flex;
+  flex-direction: column;
   border-radius: 1.8rem;
+}
+
+.calculator {
+  &-screen {
+    background-color: yellowgreen;
+    height: 5.8rem;
+    margin-bottom: 5rem;
+  }
+
+  &-btns {
+    background-color: lightblue;
+  }
 }
