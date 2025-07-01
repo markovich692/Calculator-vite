@@ -13,8 +13,9 @@ body {
   max-width: 40rem;
   min-height: 50rem;
   margin: 8rem auto;
-  padding: 4rem 4rem;
+  padding: 2.5rem 3rem;
   display: grid;
   grid-template-columns: 2rem repeat(4, 1fr) 2rem;
   grid-template-rows: repeat(12, 1fr);
+  border-radius: 3rem;
 }
