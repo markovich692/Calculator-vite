@@ -8,10 +8,19 @@
   border-radius: 50px;
   display: flex;
   flex-direction: column;
-  position:relative;
 }
 
 .screen {
   width: 100%;
   height: 20rem;
+  padding: 3rem 4rem;
+  display:flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  &__display {
+    font-size: 6rem;
+    font-weight: 500;
+    max-width: 100%;
+  }
 }
