@@ -28,12 +28,13 @@
       justify-content: flex-end;
       align-items: center;
       border-radius: 90px;
-      box-shadow: -0.3px 0.5px 3px rgba(0, 0, 0, 0.15);
+      box-shadow: -0.3px 0.5px 9px rgba(#ff6b6b, 0.15);
     }
 
     &-text {
       font-size: 4.5rem;
       font-weight: 500;
+      color: $color-secondary;
     }
   }
 }
