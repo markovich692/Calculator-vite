@@ -1,0 +1,8 @@
+@use "../abstracts/index" as *;
+
+.container {
+  background-color: $color-secondary;
+  width: 55rem;
+  height: 65rem;
+  margin: 9rem auto;
+}
