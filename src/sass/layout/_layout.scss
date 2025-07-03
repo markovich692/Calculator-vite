@@ -16,7 +16,7 @@
   width: 100%;
   height: 28rem;
   padding: 10.1rem 6.1rem 5.1rem 6.1rem;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
 
@@ -42,17 +42,13 @@
 }
 
 .keyboard {
-  flex: 1 0 100%;
-  padding: 2.5rem 2.5rem;
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
-
   &__buttons {
     flex: 1 0 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     border: none;
+    background-color: #fff;
+    
   }
 
   &__btn {
@@ -61,13 +57,20 @@
     background-color: #fff;
     font-family: inherit;
     border: none;
+    border-radius:15px;
 
     &--fn {
-      color: #ff6b6b;
+      color: $color-primary;
+      letter-spacing: 1px;
     }
 
     &--digit {
-      color: olive;
+      color: #adb5bd;
+
+      &:hover {
+        background-color: $color-primary;
+        color: #fff;
+      }
     }
   }
 }
