@@ -49,19 +49,26 @@
     flex: 1 0 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    border:none;
-    
+    border: none;
   }
 
   &__btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
-    
-    // border: none;
+    font-size: 1.8rem;
+    font-weight: 300;
     background-color: $color-secondary;
     font-family: inherit;
-    border:none;
+    border: none;
+    color:$color-primary;
+
+    &--fn {
+      color: #ffe4d9;
+    }
+
+    &--digits{
+      color:$color-primary;
+    }
   }
 }
