@@ -42,6 +42,12 @@
 .keyboard {
   flex: 1 0 100%;
   margin: 2.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+
+  &__buttons {
+    flex: 1 0 100%;
+  }
 }
 
 /*
