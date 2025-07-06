@@ -1,6 +1,17 @@
 export const state = {
-  currenttValue: 0,
+  currentValue: 0,
   updatedValue: "",
-  currentOperation: null,
-  updatedOperation: null,
+  currentOperator: null,
+  updatedOperator: null,
 };
+
+export const add = function (a, b) {
+
+
+
+
+
+  return a + b;
+};
+
+
