@@ -1,17 +1,11 @@
 export const state = {
-  currentValue: 0,
-  updatedValue: "",
+  currentValue: "",
   currentOperator: null,
   updatedOperator: null,
 };
 
-export const add = function (a, b) {
+export const addValueDisplay = function (newNumber) {
+  state.updatedValue = state.updatedValue + newNumber;
 
-
-
-
-
-  return a + b;
+  // console.log(state);
 };
-
-

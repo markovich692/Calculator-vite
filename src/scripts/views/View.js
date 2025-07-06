@@ -9,10 +9,24 @@ class View {
       if (!btn) return;
 
       if (btn.className.includes("keyboard__btn--digit")) {
-        const digitclicked = btn.textContent;
+        const digitClicked = btn.textContent;
 
         // Pass the value to the controller so it can update the UI
-        handler(digitclicked);
+        handler(digitClicked);
+      }
+    });
+  }
+
+  renderFunction(handler) {
+    this.calcKeyboardButtons.addEventListener("click", function (e) {
+      const btn = e.target;
+
+      if (!btn) return;
+
+      if (btn.className.includes("keyboard__btn--fn")) {
+        const buttonClicked = btn.textContent;
+
+        handler(buttonClicked);
       }
     });
   }

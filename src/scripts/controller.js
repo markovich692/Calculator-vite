@@ -1,46 +1,25 @@
 import "../sass/style.scss";
-import view from "./views";
-
-
-calcKeyboardButtons.addEventListener("click", function (e) {
-  const btn = e.target;
-
-  if (!btn) return;
-
-  //DIGITS
-  if (btn.className.includes("keyboard__btn--digit")) {
-    const digitclicked = btn.textContent;
-
-    screenDisplay.textContent = digitclicked;
-  }
-
-  //DIGITS
-  if (btn.className.includes("keyboard__btn--fn")) {
-    const digitclicked = btn.textContent;
-    screenDisplay.textContent = digitclicked;
-  }
-});
-
+import view from "./views/View";
+import * as model from "./model";
 
 const controlDigitDisplay = function (digit) {
-  
+  //Updates the currentValue in the state
+  model.state.currentValue = model.state.currentValue + digit;
 
+  //Display the current value on the screen
+  view.updateScreen(model.state.currentValue);
+};
 
+/////////////////////////
+const controlFunctionDisplay = function (fn) {
+  //Update the screen with the function content
 
-
-
-
-}
-
-
-
-
-
-
-
+  view.updateScreen(fn);
+};
 
 const init = function () {
   view.renderDigits(controlDigitDisplay);
+  view.renderFunction(controlFunctionDisplay);
 };
 
 init();
