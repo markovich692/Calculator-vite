@@ -9,6 +9,8 @@ const controlDigitDisplay = function (digit) {
 
   //Display the current value on the screen
   view.updateScreen(model.state.currentValue);
+
+  console.log(model.state);
 };
 
 /////////////////////////

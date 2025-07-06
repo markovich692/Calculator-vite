@@ -1,12 +1,13 @@
 export const state = {
-  currentDigit: "",
-  currentValue: 0,
-  currentOperator: null,
-  updatedOperator: null,
+  digitCurrent: "",
+  valueCurrent: 0,
+  operatorCurrent: null,
+  peratorUpdated: null,
 };
 
-export const valueCurrent = function (newDigit) {
-  if (state.currentDigit.length < 13) {
-    state.currentDigit = state.currentDigit + newDigit;
+export const stateValuesUpdated = function (newDigit) {
+  if (state.digitCurrent.length < 13) {
+    state.digitCurrent = state.digitCurrent + newDigit;
+    state.valueCurrent = Number(digitCurrent);
   }
 };
