@@ -16,6 +16,10 @@ class View {
       }
     });
   }
+
+  updateScreen(content) {
+    this.screenDisplay.textContent = content;
+  }
 }
 
 export default new View();
