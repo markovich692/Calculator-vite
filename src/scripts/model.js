@@ -1,11 +1,12 @@
 export const state = {
-  currentValue: "",
+  currentDigit: "",
+  currentValue: 0,
   currentOperator: null,
   updatedOperator: null,
 };
 
-export const addValueDisplay = function (newNumber) {
-  state.updatedValue = state.updatedValue + newNumber;
-
-  // console.log(state);
+export const valueCurrent = function (newDigit) {
+  if (state.currentDigit.length < 13) {
+    state.currentDigit = state.currentDigit + newDigit;
+  }
 };

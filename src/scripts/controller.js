@@ -4,7 +4,8 @@ import * as model from "./model";
 
 const controlDigitDisplay = function (digit) {
   //Updates the currentValue in the state
-  model.state.currentValue = model.state.currentValue + digit;
+
+  model.valueCurrent(digit);
 
   //Display the current value on the screen
   view.updateScreen(model.state.currentValue);
