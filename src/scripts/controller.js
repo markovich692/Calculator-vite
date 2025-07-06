@@ -4,13 +4,11 @@ import * as model from "./model";
 
 const controlDigitDisplay = function (digit) {
   //Updates the currentValue in the state
-
-  model.valueCurrent(digit);
+  model.stateValuesUpdated(digit);
 
   //Display the current value on the screen
-  view.updateScreen(model.state.currentValue);
+  view.updateScreen(model.state.digitCurrent);
 
-  console.log(model.state);
 };
 
 /////////////////////////

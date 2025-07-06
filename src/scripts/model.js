@@ -6,8 +6,11 @@ export const state = {
 };
 
 export const stateValuesUpdated = function (newDigit) {
-  if (state.digitCurrent.length < 13) {
-    state.digitCurrent = state.digitCurrent + newDigit;
-    state.valueCurrent = Number(digitCurrent);
-  }
+  if (state.digitCurrent.length > 12) return;
+
+  //updates the digitCurrent
+  state.digitCurrent = state.digitCurrent + newDigit;
+
+  //Updates the valueCurrent
+  state.valueCurrent = Number(state.digitCurrent);
 };
