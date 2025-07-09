@@ -17,7 +17,7 @@ class View {
     });
   }
 
-  renderOperatorContent(handler) {
+  renderOperatorContent(handler) { 
     this.calcKeyboardButtons.addEventListener("click", function (e) {
       const btn = e.target;
       if (!btn) return;

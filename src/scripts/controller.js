@@ -8,8 +8,7 @@ const controlDigitDisplay = function (digitClicked) {
 };
 
 function controlOperatorDisplay(operatorClicked) {
-  model.updateOperator(operatorClicked);
-  view.updateScreen(model.state.currentOperator);
+  model.updateOperator();
 }
 
 const init = function () {
