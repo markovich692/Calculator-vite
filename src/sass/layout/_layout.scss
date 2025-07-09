@@ -48,7 +48,6 @@
     grid-template-columns: repeat(4, 1fr);
     border: none;
     background-color: #fff;
-    
   }
 
   &__btn {
@@ -57,9 +56,9 @@
     background-color: #fff;
     font-family: inherit;
     border: none;
-    border-radius:15px;
+    border-radius: 15px;
 
-    &--fn {
+    &--op {
       color: $color-primary;
       letter-spacing: 1px;
     }
