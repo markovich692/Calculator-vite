@@ -5,12 +5,17 @@ export const state = {
   result: null,
 };
 
-export const updateStateValues = function (newInput) {
+export const updateStateValues = function (newDigit) {
   if (state.currentInput.length > 12) return;
-  state.currentInput += newInput;
+  state.currentInput = state.currentInput + newDigit;
 };
 
-/*
- Updates the previousValue (only when operator is clicked)
-  state.previousValue = Number(state.digitCurrent);
-  */
+export const updateOperator = function (newOperator) {
+  state.currentOperator = newOperator;
+  state.previousValue = Number(state.currentInput);
+  state.currentInput = "";
+
+  console.log(state);
+};
+
+
