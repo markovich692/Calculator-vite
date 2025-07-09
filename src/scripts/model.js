@@ -1,16 +1,17 @@
 export const state = {
-  digitCurrent: "",
-  valueCurrent: 0,
-  operatorCurrent: null,
-  peratorUpdated: null,
+  currentInput: "",
+  previousValue: null,
+  currentOperator: null,
+  result: null,
 };
 
-export const stateValuesUpdated = function (newDigit) {
-  if (state.digitCurrent.length > 12) return;
+export const stateValuesUpdate = function (newInput) {
+  if (state.currentInput.length > 12) return;
 
   //updates the digitCurrent
-  state.digitCurrent = state.digitCurrent + newDigit;
+  state.currentInput = state.currentInput + newInput;
 
-  //Updates the valueCurrent
-  state.valueCurrent = Number(state.digitCurrent);
+  //Updates the previousValue (only when operator is clicked)
+  // state.previousValue = Number(state.digitCurrent);
 };
+
