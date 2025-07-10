@@ -5,13 +5,18 @@ export const state = {
   result: null,
 };
 
-export const updateStateValues = function (newDigit) {
+export const updateStateValues = function (digitClicked) {
   if (state.currentInput.length > 12) return;
-  state.currentInput = state.currentInput + newDigit;
-  console.log(state);
+  state.currentInput = state.currentInput + digitClicked;
 };
 
-//Handles operator logic
-export const updateOperator = function (newOperator) {
-  console.log("operator clicked");
+export const handleOperator = function (operatorClicked) {
+  //Update the previousValue
+  state.currentOperator = operatorClicked;
+
+  //previousValue
+  state.previousValue = Number(state.currentInput);
+
+  //Update currentInput
+  state.currentInput = "";
 };
