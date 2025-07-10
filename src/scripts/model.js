@@ -11,12 +11,15 @@ export const updateStateValues = function (digitClicked) {
 };
 
 export const handleOperator = function (operatorClicked) {
-  //Update the previousValue
-  state.currentOperator = operatorClicked;
+  //Update the state if there is already a currentInput and an operator is clicked
+  if (state.currentInput) {
+    state.previousValue = Number(state.currentInput);
+    state.currentOperator = operatorClicked;
+    state.currentInput = "";
+    updateResult();
+  }
 
-  //previousValue
-  state.previousValue = Number(state.currentInput);
-
-  //Update currentInput
-  state.currentInput = "";
+  // console.log(state);
 };
+
+
