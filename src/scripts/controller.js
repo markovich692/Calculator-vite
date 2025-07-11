@@ -4,8 +4,8 @@ import * as model from "./model";
 
 const controlDigitDisplay = function (digitClicked) {
   model.updateStateValues(digitClicked);
+
   view.updateScreen(model.state.currentInput);
-  
 };
 
 const controlOperatorDisplay = function (operatorClicked) {
@@ -20,4 +20,7 @@ const init = function () {
 };
 
 init();
+
+const numb = "00012";
+
 

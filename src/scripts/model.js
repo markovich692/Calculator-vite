@@ -8,8 +8,7 @@ export const state = {
 
 export const updateStateValues = function (digitClicked) {
   if (state.currentInput.length > 12) return;
-  state.currentInput = state.currentInput + digitClicked;
-  console.log(state);
+  state.currentInput = String(Number(state.currentInput + digitClicked));
 };
 
 export const handleOperator = function (operatorClicked) {
