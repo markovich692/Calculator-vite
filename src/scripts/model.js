@@ -26,9 +26,16 @@ export const handleOperator = function (operatorClicked) {
   }
 
   state.currentInput = "";
+
   console.log(state);
 };
 
 const updateResult = function () {
-  state.previousValue = state.previousValue + Number(state.currentInput);
+  const curInput = state.currentInput;
+  const prevValue = state.previousValue;
+  const curOperator = state.currentOperator;
+
+
+
+  
 };
