@@ -5,7 +5,7 @@ import * as model from "./model";
 const controlDigitDisplay = function (digitClicked) {
   model.updateStateValues(digitClicked);
   view.updateScreen(model.state.currentInput);
-  console.log(model.state);
+  // console.log(model.state);
 };
 
 const controlOperatorDisplay = function (operatorClicked) {
