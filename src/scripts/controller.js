@@ -10,7 +10,11 @@ const controlDigitDisplay = function (digitClicked) {
 
 const controlOperatorDisplay = function (operatorClicked) {
   model.handleOperator(operatorClicked);
-  view.updateScreen(model.state.screenDisplay);
+  console.log(model.state);
+  // view.updateScreen(model.state.screenDisplay);
+
+  if (model.state.displayFull.length)
+    view.updateScreen(model.state.screenDisplay);
 };
 
 const init = function () {
