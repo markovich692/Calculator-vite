@@ -24,11 +24,18 @@ export const handleOperator = function (operatorClicked) {
 };
 
 export const updateDisplayFull = function (btnClicked) {
-  const operators = ["+", "-", "/", "%", "x", "=", "."];
+  const operatorsAll = ["+", "-", "/", "%", "x", "=", "."];
   const lastElementDisplay = state.displayFull[state.displayFull.length - 1];
+  const operatorsStart = ["/", "%", "x", "=", "."];
 
-  //Prevent the 2 operators to follow each other
-  if (operators.includes(lastElementDisplay) && operators.includes(btnClicked))
+  //Prevent the calculation to start with certain operators
+  if (!state.displayFull.length && operatorsStart.includes(btnClicked)) return;
+
+  //Prevent the 2 operators from following each other
+  if (
+    operatorsAll.includes(lastElementDisplay) &&
+    operatorsAll.includes(btnClicked)
+  )
     return;
 
   state.displayFull.push(btnClicked);
