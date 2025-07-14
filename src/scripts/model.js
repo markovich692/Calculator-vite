@@ -13,7 +13,7 @@ export const updateStateValues = function (digitClicked) {
   state.currentInput = String(Number(state.currentInput + digitClicked));
   //Update the displayFull state property
   updateDisplayFull(digitClicked);
-  // console.log(state.displayFull);
+  // console.log(state);
 };
 
 export const handleOperator = function (operatorClicked) {
@@ -23,11 +23,7 @@ export const handleOperator = function (operatorClicked) {
 
   //Update the state previous values and current operator
 
-
-
-
-
-  
+  calcStateLogic(operatorClicked);
 };
 
 export const updateDisplayFull = function (btnClicked) {
@@ -52,50 +48,19 @@ export const updateDisplayFull = function (btnClicked) {
   state.screenDisplay = rendered;
 };
 
-export const handleCalculations = function (operator) {};
-
-/*
-//Handles operators display and functions
-export const handleOperator = function (operatorClicked) {
+export const calcStateLogic = function (operator) {
+  //Operator is clicked for the second time
   if (state.currentInput && state.previousValue !== null) {
-    //The operator is clicked for the second time
     updateResult();
-    console.log(state);
   }
 
-  //The operator is clicked for the first time
+  //Operator is clicked for the first time
   if (state.currentInput && state.previousValue === null) {
     state.previousValue = Number(state.currentInput);
   }
 
-  state.currentOperator = operatorClicked;
+  state.currentOperator = operator;
   state.currentInput = "";
-  console.log(state);
 };
 
-const updateResult = function () {
-  const curInput = Number(state.currentInput);
-  const prevValue = state.previousValue;
-  const curOperator = state.currentOperator;
-
-  if (curOperator === "/") {
-    state.previousValue = prevValue / curInput;
-    state.result = prevValue / curInput;
-  }
-
-  if (curOperator === "x") {
-    state.previousValue = prevValue * curInput;
-    state.result = prevValue * curInput;
-  }
-
-  if (curOperator === "-") {
-    state.previousValue = prevValue - curInput;
-    state.result = prevValue - curInput;
-  }
-
-  if (curOperator === "+") {
-    state.previousValue = Number(curInput) + prevValue;
-    state.result = Number(curInput) + prevValue;
-  }
-};
-*/
+export const handleCalculations = function (operator) {};
