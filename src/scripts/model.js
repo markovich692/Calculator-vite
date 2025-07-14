@@ -3,21 +3,23 @@ export const state = {
   previousValue: null,
   currentOperator: null,
   result: null,
-  displayComplete: [],
+  displayFull: [],
 };
 
 //Displays the digits on click
 export const updateStateValues = function (digitClicked) {
-  if (state.currentInput.length > 12 || state.displayComplete > 12) return;
+  if (state.currentInput.length > 12 || state.displayFull > 12) return;
   state.currentInput = String(Number(state.currentInput + digitClicked));
-
   //Update the displayComplete state property
+  state.displayFull.push(digitClicked);
 };
 
 export const handleOperator = function (operatorClicked) {
-  if (state.displayComplete.length > 12) return;
-  state.displayComplete.push(operatorClicked);
+  if (state.displayFull.length > 12) return;
+  state.displayFull.push(operatorClicked);
 };
+
+export const updateDisplayFull = function () {};
 
 /*
 //Handles operators display and functions
