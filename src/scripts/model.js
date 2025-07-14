@@ -11,18 +11,30 @@ export const state = {
 export const updateStateValues = function (digitClicked) {
   if (state.currentInput.length > 12 || state.displayFull.length > 12) return;
   state.currentInput = String(Number(state.currentInput + digitClicked));
-  //Update the displayComplete state property
+  //Update the displayFull state property
   updateDisplayFull(digitClicked);
+  // console.log(state.displayFull);
 };
 
 export const handleOperator = function (operatorClicked) {
   if (state.displayFull.length > 12) return;
+  //Update the displayFull state property
   updateDisplayFull(operatorClicked);
+  // console.log(state);
 };
 
 export const updateDisplayFull = function (btnClicked) {
+  const operators = ["+", "-", "/", "%", "x", "=", "."];
+  const lastElementDisplay = state.displayFull[state.displayFull.length - 1];
+
+  //Prevent the 2 operators to follow each other
+  if (operators.includes(lastElementDisplay) && operators.includes(btnClicked))
+    return;
+
   state.displayFull.push(btnClicked);
+
   const rendered = state.displayFull.join("");
+
   state.screenDisplay = rendered;
 };
 
