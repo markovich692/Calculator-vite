@@ -8,13 +8,16 @@ export const state = {
 
 //Displays the digits on click
 export const updateStateValues = function (digitClicked) {
-  if (state.currentInput.length > 12) return;
+  if (state.currentInput.length > 12 || state.displayComplete > 12) return;
   state.currentInput = String(Number(state.currentInput + digitClicked));
 
   //Update the displayComplete state property
 };
 
-export const handleOperator = function (operatorClicked) {};
+export const handleOperator = function (operatorClicked) {
+  if (state.displayComplete.length > 12) return;
+  state.displayComplete.push(operatorClicked);
+};
 
 /*
 //Handles operators display and functions
