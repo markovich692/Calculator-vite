@@ -20,7 +20,14 @@ export const handleOperator = function (operatorClicked) {
   if (state.displayFull.length > 12) return;
   //Update the displayFull state property
   updateDisplayFull(operatorClicked);
-  // console.log(state);
+
+  //Update the state previous values and current operator
+
+
+
+
+
+  
 };
 
 export const updateDisplayFull = function (btnClicked) {
@@ -44,6 +51,8 @@ export const updateDisplayFull = function (btnClicked) {
 
   state.screenDisplay = rendered;
 };
+
+export const handleCalculations = function (operator) {};
 
 /*
 //Handles operators display and functions
