@@ -4,12 +4,14 @@ import * as model from "./model";
 
 const controlDigitDisplay = function (digitClicked) {
   model.updateStateValues(digitClicked);
-  view.updateScreen(model.state.currentInput);
+  // view.updateScreen(model.state.currentInput);
+  view.updateScreen(model.state.screenDisplay);
 };
 
 const controlOperatorDisplay = function (operatorClicked) {
   model.handleOperator(operatorClicked);
-  view.updateScreen(model.state.currentInput);
+  // view.updateScreen(model.state.currentInput);
+  view.updateScreen(model.state.screenDisplay);
 };
 
 const init = function () {

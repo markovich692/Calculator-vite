@@ -4,22 +4,27 @@ export const state = {
   currentOperator: null,
   result: null,
   displayFull: [],
+  screenDisplay: null,
 };
 
 //Displays the digits on click
 export const updateStateValues = function (digitClicked) {
-  if (state.currentInput.length > 12 || state.displayFull > 12) return;
+  if (state.currentInput.length > 12 || state.displayFull.length > 12) return;
   state.currentInput = String(Number(state.currentInput + digitClicked));
   //Update the displayComplete state property
-  state.displayFull.push(digitClicked);
+  updateDisplayFull(digitClicked);
 };
 
 export const handleOperator = function (operatorClicked) {
   if (state.displayFull.length > 12) return;
-  state.displayFull.push(operatorClicked);
+  updateDisplayFull(operatorClicked);
 };
 
-export const updateDisplayFull = function () {};
+export const updateDisplayFull = function (btnClicked) {
+  state.displayFull.push(btnClicked);
+  const rendered = state.displayFull.join("");
+  state.screenDisplay = rendered;
+};
 
 /*
 //Handles operators display and functions
