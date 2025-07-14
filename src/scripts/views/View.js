@@ -13,20 +13,18 @@ class View {
 
         handler(digitClicked);
       }
-
     });
   }
 
-  renderOperatorContent(handler) { 
+  renderOperatorContent(handler) {
     this.calcKeyboardButtons.addEventListener("click", function (e) {
       const btn = e.target;
       if (!btn) return;
 
-        if (btn.className.includes("keyboard__btn--op")) {
-          const operatorClicked = btn.textContent;
-
-          handler(operatorClicked);
-        }
+      if (btn.className.includes("keyboard__btn--op")) {
+        const operatorClicked = btn.textContent;
+        handler(operatorClicked);
+      }
     });
   }
 
