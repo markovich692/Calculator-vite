@@ -2,11 +2,10 @@ import "../sass/style.scss";
 import view from "./views/View";
 import * as model from "./model";
 
-const controlDigitDisplay = function (digitClicked) {
-  model.updateStateValues(digitClicked);
+const controlDigitDisplay = function (digit) {
+  model.handleDigits(digit);
 
   view.updateScreen(model.state.screenDisplay);
-  // console.log(model.state);
 };
 
 const controlOperatorDisplay = function (operatorClicked) {
@@ -14,7 +13,6 @@ const controlOperatorDisplay = function (operatorClicked) {
 
   if (model.state.displayFull.length)
     view.updateScreen(model.state.screenDisplay);
-  // console.log(model.state);
 };
 
 const init = function () {

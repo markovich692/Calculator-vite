@@ -3,28 +3,23 @@ import { evaluate } from "mathjs";
 export const state = {
   currentInput: "",
   currentOperator: null,
-  displayFull: [],
+  toDisplayArray: [],
   screenDisplay: null,
   result: null,
   hasResult: false,
 };
 
 //Displays the digits on click
-export const updateStateValues = function (digitClicked) {
-  if (state.currentInput.length > 12 || state.displayFull.length > 12) return;
-  state.currentInput = String(Number(state.currentInput + digitClicked));
-  //Update the displayFull state property
-  updateDisplayFull(digitClicked);
+export const handleDigits = function (digit) {
+  if (state.currentInput.length > 12) return;
+  state.currentInput = String(Number(state.currentInput + digit));
+  state.screenDisplay = state.currentInput;
+  console.log(state);
 };
 
-export const handleOperator = function (operatorClicked) {
-  //Prevent the screen content to overflow
-  if (state.displayFull.length > 12) return;
+export const handleOperator = function (operatorClicked) {};
 
-  //Update the displayFull state property
-  updateDisplayFull(operatorClicked);
-};
-
+/*
 export const updateDisplayFull = function (btnClicked) {
   const operatorsAll = ["-", "+", "/", "%", "x", "=", "."];
   const operatorsStart = ["/", "%", "x", "=", "."];
@@ -32,6 +27,9 @@ export const updateDisplayFull = function (btnClicked) {
 
   //Make sure that equal can only be used when the state.displayFull.length is at least 3
   if (state.displayFull.length < 3 && btnClicked === "=") return;
+
+  //Prevent the calculation to start with a zero
+  if (!state.displayFull.length && btnClicked === "0") return;
 
   //Prevent the calculation to start with any operator
   if (!state.displayFull.length && operatorsStart.includes(btnClicked)) return;
@@ -53,3 +51,4 @@ export const updateDisplayFull = function (btnClicked) {
 };
 
 export const evaluateExpression = function () {};
+*/
