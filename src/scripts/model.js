@@ -19,9 +19,14 @@ export const handleDigits = function (digit) {
   //Prevent 2 consecutives 0 at the beginning of an Input
   if (state.currentInput === "0" && digit === "0") return;
 
-  state.currentInput += digit;
+  //Allows decimal number to be defined 
+  if (state.currentInput === "0" && digit !== ".") {
+    state.currentInput = digit;
+  } else {
+    state.currentInput += digit;
+  }
+
   state.screenDisplay = state.currentInput;
-  console.log(state);
 };
 
 export const handleOperator = function (operator) {};
