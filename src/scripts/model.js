@@ -19,7 +19,7 @@ export const handleDigits = function (digit) {
   //Prevent 2 consecutives 0 at the beginning of an Input
   if (state.currentInput === "0" && digit === "0") return;
 
-  //Allows decimal number to be defined 
+  //Allows decimal number to be defined
   if (state.currentInput === "0" && digit !== ".") {
     state.currentInput = digit;
   } else {
@@ -29,7 +29,13 @@ export const handleDigits = function (digit) {
   state.screenDisplay = state.currentInput;
 };
 
-export const handleOperator = function (operator) {};
+export const handleOperator = function (operator) {
+  //Adds operator to the currenInput
+  state.currentInput += operator;
+
+  //Updates the screenDisplay property
+  state.screenDisplay = state.currentInput;
+};
 
 /*
 export const updateDisplayFull = function (btnClicked) {
