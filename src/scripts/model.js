@@ -9,7 +9,10 @@ export const state = {
   hasResult: false,
 };
 
-//Displays the digits on click
+const operatorsAll = ["%", "/", "x", "-", "+", "="];
+const notStartWithOperator = ["%", "/", "x", "="];
+
+//DIGITS
 export const handleDigits = function (digit) {
   if (state.currentInput.length > 12) return;
 
@@ -29,7 +32,18 @@ export const handleDigits = function (digit) {
   state.screenDisplay = state.currentInput;
 };
 
+//OPERATORS
 export const handleOperator = function (operator) {
+  //Prevent 2 consecutive operators
+  if (
+    operatorsAll.includes(state.currentInput[state.currentInput.length - 1]) &&
+    operatorsAll.includes(operator)
+  )
+    return;
+
+  //Prevent starting calculation with "%", "/", "x", "="
+  if (!state.currentInput && notStartWithOperator.includes(operator)) return;
+
   //Adds operator to the currenInput
   state.currentInput += operator;
 
