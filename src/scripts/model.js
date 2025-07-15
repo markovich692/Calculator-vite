@@ -1,10 +1,9 @@
 export const state = {
   currentInput: "",
-  previousValue: null,
   currentOperator: null,
-  result: null,
   displayFull: [],
   screenDisplay: null,
+  result: null,
 };
 
 //Displays the digits on click
@@ -13,25 +12,22 @@ export const updateStateValues = function (digitClicked) {
   state.currentInput = String(Number(state.currentInput + digitClicked));
   //Update the displayFull state property
   updateDisplayFull(digitClicked);
-  // console.log(state);
 };
 
 export const handleOperator = function (operatorClicked) {
+  //Prevent the screen content to overflow
   if (state.displayFull.length > 12) return;
+
   //Update the displayFull state property
   updateDisplayFull(operatorClicked);
-
-  //Update the state previous values and current operator
-
-  calcStateLogic(operatorClicked);
 };
 
 export const updateDisplayFull = function (btnClicked) {
-  const operatorsAll = ["+", "-", "/", "%", "x", "=", "."];
-  const lastElementDisplay = state.displayFull[state.displayFull.length - 1];
+  const operatorsAll = ["-", "+", "/", "%", "x", "=", "."];
   const operatorsStart = ["/", "%", "x", "=", "."];
+  const lastElementDisplay = state.displayFull[state.displayFull.length - 1];
 
-  //Prevent the calculation to start with certain operators
+  //Prevent the calculation to start with any operator
   if (!state.displayFull.length && operatorsStart.includes(btnClicked)) return;
 
   //Prevent the 2 operators from following each other
@@ -41,26 +37,11 @@ export const updateDisplayFull = function (btnClicked) {
   )
     return;
 
+  state.currentInput = "";
+
   state.displayFull.push(btnClicked);
 
   const rendered = state.displayFull.join("");
 
   state.screenDisplay = rendered;
 };
-
-export const calcStateLogic = function (operator) {
-  //Operator is clicked for the second time
-  if (state.currentInput && state.previousValue !== null) {
-    updateResult();
-  }
-
-  //Operator is clicked for the first time
-  if (state.currentInput && state.previousValue === null) {
-    state.previousValue = Number(state.currentInput);
-  }
-
-  state.currentOperator = operator;
-  state.currentInput = "";
-};
-
-export const handleCalculations = function (operator) {};
