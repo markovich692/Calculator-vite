@@ -1,9 +1,12 @@
+import { evaluate } from "mathjs";
+
 export const state = {
   currentInput: "",
   currentOperator: null,
   displayFull: [],
   screenDisplay: null,
   result: null,
+  hasResult: false,
 };
 
 //Displays the digits on click
@@ -27,6 +30,9 @@ export const updateDisplayFull = function (btnClicked) {
   const operatorsStart = ["/", "%", "x", "=", "."];
   const lastElementDisplay = state.displayFull[state.displayFull.length - 1];
 
+  //Make sure that equal can only be used when the state.displayFull.length is at least 3
+  if (state.displayFull.length < 3 && btnClicked === "=") return;
+
   //Prevent the calculation to start with any operator
   if (!state.displayFull.length && operatorsStart.includes(btnClicked)) return;
 
@@ -45,3 +51,5 @@ export const updateDisplayFull = function (btnClicked) {
 
   state.screenDisplay = rendered;
 };
+
+export const evaluateExpression = function () {};

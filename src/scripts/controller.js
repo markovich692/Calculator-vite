@@ -6,7 +6,7 @@ const controlDigitDisplay = function (digitClicked) {
   model.updateStateValues(digitClicked);
 
   view.updateScreen(model.state.screenDisplay);
-  console.log(model.state);
+  // console.log(model.state);
 };
 
 const controlOperatorDisplay = function (operatorClicked) {
@@ -14,7 +14,7 @@ const controlOperatorDisplay = function (operatorClicked) {
 
   if (model.state.displayFull.length)
     view.updateScreen(model.state.screenDisplay);
-  console.log(model.state);
+  // console.log(model.state);
 };
 
 const init = function () {
