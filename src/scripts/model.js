@@ -13,8 +13,10 @@ export const state = {
 export const handleDigits = function (digit) {
   if (state.currentInput.length > 12) return;
 
-  console.log(state);
+  //Prevent 2 dots in an input
+  if (state.currentInput.includes(".") && digit === ".") return;
 
+  //Prevent 2 consecutives 0 at the beginning of an Input
   if (state.currentInput === "0" && digit === "0") return;
 
   state.currentInput += digit;
