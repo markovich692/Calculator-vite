@@ -12,12 +12,17 @@ export const state = {
 //Displays the digits on click
 export const handleDigits = function (digit) {
   if (state.currentInput.length > 12) return;
-  state.currentInput = String(Number(state.currentInput + digit));
+
+  console.log(state);
+
+  if (state.currentInput === "0" && digit === "0") return;
+
+  state.currentInput += digit;
   state.screenDisplay = state.currentInput;
   console.log(state);
 };
 
-export const handleOperator = function (operatorClicked) {};
+export const handleOperator = function (operator) {};
 
 /*
 export const updateDisplayFull = function (btnClicked) {
