@@ -9,7 +9,7 @@ export const state = {
   hasResult: false,
 };
 
-const operatorsAll = ["%", "/", "x", "-", "+", "="];
+const operatorsAll = ["%", "/", "*", "-", "+", "="];
 const notStartWithOperator = ["%", "/", "x", "="];
 
 //DIGITS
@@ -34,6 +34,12 @@ export const handleDigits = function (digit) {
 
 //OPERATORS
 export const handleOperator = function (operator) {
+  //Prevents the currentInput to overflow the screen
+  if (state.currentInput.length > 12) return;
+
+  //Prevent starting with operators "%", "/", "*", "="
+  if (!state.currentInput && notStartWithOperator.includes(operator)) return;
+
   //Prevent 2 consecutive operators
   if (
     operatorsAll.includes(state.currentInput[state.currentInput.length - 1]) &&
@@ -41,11 +47,13 @@ export const handleOperator = function (operator) {
   )
     return;
 
-  //Prevent starting calculation with "%", "/", "x", "="
-  if (!state.currentInput && notStartWithOperator.includes(operator)) return;
+  //Adds currenInput to the toDisplayArray an resets it
+  if (state.currentInput !== "") {
+    state.toDisplayArray.push(state.currentInput);
+    state.currentInput = "";
+  }
 
-  //Adds operator to the currenInput
-  state.currentInput += operator;
+
 
   //Updates the screenDisplay property
   state.screenDisplay = state.currentInput;
