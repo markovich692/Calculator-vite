@@ -35,9 +35,15 @@ export const handleDigits = function (digit) {
 
 //OPERATOR
 export const handleOperator = function (operator) {
-  //Prevent invalid starts operator
-  if (state.currentInput === "" && invalidStartOperator.includes(operator))
-    return;
+  try {
+    //Prevent invalid starts operator
+    if (state.currentInput === "" && invalidStartOperator.includes(operator))
+      return (state.screenDisplay = "0");
 
-  
+    //Updates the currentInput on operators clicking and adds it to the screenDisplay property
+    state.currentInput += operator;
+    state.screenDisplay = state.currentInput;
+  } catch (error) {
+    console.log(error);
+  }
 };
