@@ -9,12 +9,13 @@ export const state = {
   hasResult: false,
 };
 
-const operatorsAll = ["%", "/", "x", "-", "+", "="];
+const operatorsAll = ["%", "/", "*", "-", "+", "="];
 const invalidStartOperator = ["%", "/", "x", "="];
 
 //DIGITS
 export const handleDigits = function (digit) {
-  if (state.currentInput.length > 12) return;
+  if (state.currentInput.length > 12 || state.toDisplayArray.length > 12)
+    return;
 
   //Prevent 2 dots in an input
   if (state.currentInput.includes(".") && digit === ".") return;
@@ -30,19 +31,45 @@ export const handleDigits = function (digit) {
   }
 
   state.screenDisplay = state.currentInput;
-  console.log(state);
+  console.log(state.toDisplayArray);
 };
 
 //OPERATOR
 export const handleOperator = function (operator) {
   try {
-    //Prevent invalid starts operator
-    if (state.currentInput === "" && invalidStartOperator.includes(operator))
-      return (state.screenDisplay = "0");
+    if (state.currentInput.length > 12 || state.toDisplayArray.length > 12)
+      return;
 
-    //Updates the currentInput on operators clicking and adds it to the screenDisplay property
-    state.currentInput += operator;
-    state.screenDisplay = state.currentInput;
+    //ignores the equal sign operator
+    if (operator === "=") return;
+
+    if (operator === "x") operator = "*";
+
+    //Prevent invalid starts operator
+    if (state.currentInput === "" && invalidStartOperator.includes(operator)) {
+      return (state.screenDisplay = "0");
+    }
+
+    //Check for Existing Input
+    if (state.currentInput !== "" && operatorsAll.includes(operator)) {
+      state.toDisplayArray.push(state.currentInput);
+      state.currentInput = "";
+    }
+
+    //Prevents 2 consecutive operators
+    if (
+      operatorsAll.includes(
+        state.toDisplayArray[state.toDisplayArray.length - 1]
+      )
+    ) {
+      state.toDisplayArray[state.toDisplayArray.length - 1] = operator;
+    } else {
+      state.toDisplayArray.push(operator);
+    }
+
+    console.log(state);
+    state.screenDisplay = state.toDisplayArray.join("");
+    console.log(state);
   } catch (error) {
     console.log(error);
   }
