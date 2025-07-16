@@ -14,6 +14,7 @@ const invalidStartOperator = ["%", "/", "x", "="];
 
 //DIGITS
 export const handleDigits = function (digit) {
+
   if (state.currentInput.length > 12 || state.toDisplayArray.length > 12)
     return;
 
@@ -30,7 +31,8 @@ export const handleDigits = function (digit) {
     state.currentInput += digit;
   }
 
-  state.screenDisplay = state.currentInput;
+  // state.screenDisplay = state.currentInput;
+  state.screenDisplay = [...state.toDisplayArray, state.currentInput].join("");
   console.log(state.toDisplayArray);
 };
 
