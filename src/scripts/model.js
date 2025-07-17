@@ -7,6 +7,7 @@ export const state = {
   screenDisplay: null,
   result: null,
   hasResult: false,
+  clickCount: 0,
 };
 
 const operatorsAll = ["%", "/", "*", "-", "+", "="];
@@ -14,9 +15,7 @@ const invalidStartOperator = ["%", "/", "x", "="];
 
 //DIGITS
 export const handleDigits = function (digit) {
-
-  if (state.currentInput.length > 12 || state.toDisplayArray.length > 12)
-    return;
+  if (state.currentInput.length > 12 || state.clickCount > 12) return;
 
   //Prevent 2 dots in an input
   if (state.currentInput.includes(".") && digit === ".") return;
@@ -31,16 +30,14 @@ export const handleDigits = function (digit) {
     state.currentInput += digit;
   }
 
-  // state.screenDisplay = state.currentInput;
+  state.clickCount = state.clickCount + 1;
   state.screenDisplay = [...state.toDisplayArray, state.currentInput].join("");
-  console.log(state.toDisplayArray);
 };
 
 //OPERATOR
 export const handleOperator = function (operator) {
   try {
-    if (state.currentInput.length > 12 || state.toDisplayArray.length > 12)
-      return;
+    if (state.currentInput.length > 12 || state.clickCount > 12) return;
 
     //ignores the equal sign operator
     if (operator === "=") return;
@@ -69,9 +66,9 @@ export const handleOperator = function (operator) {
       state.toDisplayArray.push(operator);
     }
 
-    console.log(state);
     state.screenDisplay = state.toDisplayArray.join("");
-    console.log(state);
+
+    state.clickCount = state.clickCount + 1;
   } catch (error) {
     console.log(error);
   }
