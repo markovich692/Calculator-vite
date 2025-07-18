@@ -34,7 +34,7 @@ export const handleDigits = function (digit) {
 
   state.screenDisplay =
     [...state.toDisplayArray, state.currentInput].join("") || "0";
-  
+
   //Updates the lastAction in the state
   state.lastAction = "digit";
 };
@@ -46,9 +46,13 @@ export const handleOperator = function (operator) {
     if (state.screenDisplay && state.screenDisplay.length > 12) return;
 
     //Ignores the equal sign operator
-    if (operator === "=") return;
+    if (operator === "=") {
+      handleEquals();
+      return;
+    }
 
     const displayOperator = operator;
+
     const calculationOperator = operator === "x" ? "*" : operator;
 
     //Check for Existing Input
@@ -62,11 +66,12 @@ export const handleOperator = function (operator) {
 
     // Handle consecutive operators
     const lastItem = state.toDisplayArray[state.toDisplayArray.length - 1];
+
     const isLastItemOperator =
       operatorsAll.includes(lastItem) || lastItem === "x";
 
     if (isLastItemOperator) {
-      // Special case: if last was "%" and current is NOT "%", allow it (like "9%+")
+      // Special case: if last was "%" and current is NOT "%", allows it (like "9%+")
       if (lastItem === "%" && displayOperator !== "%") {
         state.toDisplayArray.push(displayOperator);
       } else {
@@ -74,19 +79,21 @@ export const handleOperator = function (operator) {
         state.toDisplayArray[state.toDisplayArray.length - 1] = displayOperator;
       }
       state.screenDisplay = state.toDisplayArray.join("");
-      state.lastAction = "operator"; // Added state tracking
+
+      //Updates lastAction property in the state
+      state.lastAction = "operator";
       return;
     }
 
-    //Prevent invalid starts - FIXED: include "x" in check and array length
+    //Prevent invalid starts
     if (
       state.currentInput === "" &&
-      state.toDisplayArray.length === 0 && // Added this condition
+      state.toDisplayArray.length === 0 &&
       (invalidStartOperator.includes(displayOperator) ||
-        displayOperator === "x") // Added "x" check
+        displayOperator === "x")
     ) {
       state.screenDisplay = "0";
-      return; // Cleaner return style
+      return;
     }
 
     // Add new operator
@@ -99,3 +106,5 @@ export const handleOperator = function (operator) {
     console.log(error);
   }
 };
+
+const handleEquals = function () {};
