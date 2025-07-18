@@ -4,13 +4,14 @@ export const state = {
   currentInput: "",
   currentOperator: null,
   toDisplayArray: [],
-  screenDisplay: null,
+  screenDisplay: "0",
   result: null,
   hasResult: false,
+  lastAction: null,
 };
 
 const operatorsAll = ["%", "/", "*", "-", "+", "="];
-const invalidStartOperator = ["%", "/", "x", "="];
+const invalidStartOperator = ["%", "/", "*", "="];
 
 //DIGITS
 export const handleDigits = function (digit) {
@@ -22,6 +23,7 @@ export const handleDigits = function (digit) {
 
   //Prevent 2 consecutives 0 at the beginning of an Input
   if (state.currentInput === "0" && digit === "0") return;
+  if (state.currentInput === "" && digit === "00") return;
 
   //Allows decimal number to be defined
   if (state.currentInput === "0" && digit !== ".") {
@@ -30,7 +32,11 @@ export const handleDigits = function (digit) {
     state.currentInput += digit;
   }
 
-  state.screenDisplay = [...state.toDisplayArray, state.currentInput].join("");
+  state.screenDisplay =
+    [...state.toDisplayArray, state.currentInput].join("") || "0";
+  
+  //Updates the lastAction in the state
+  state.lastAction = "digit";
 };
 
 //OPERATOR
@@ -39,34 +45,56 @@ export const handleOperator = function (operator) {
     //Prevents overflowing
     if (state.screenDisplay && state.screenDisplay.length > 12) return;
 
-    //ignores the equal sign operator
+    //Ignores the equal sign operator
     if (operator === "=") return;
 
-    if (operator === "x") operator = "*";
-
-    //Prevent invalid starts operator
-    if (state.currentInput === "" && invalidStartOperator.includes(operator)) {
-      return (state.screenDisplay = "0");
-    }
+    const displayOperator = operator;
+    const calculationOperator = operator === "x" ? "*" : operator;
 
     //Check for Existing Input
-    if (state.currentInput !== "" && operatorsAll.includes(operator)) {
+    if (
+      state.currentInput !== "" &&
+      operatorsAll.includes(calculationOperator)
+    ) {
       state.toDisplayArray.push(state.currentInput);
       state.currentInput = "";
     }
 
-    //Prevents 2 consecutive operators
-    if (
-      operatorsAll.includes(
-        state.toDisplayArray[state.toDisplayArray.length - 1]
-      )
-    ) {
-      state.toDisplayArray[state.toDisplayArray.length - 1] = operator;
-    } else {
-      state.toDisplayArray.push(operator);
+    // Handle consecutive operators
+    const lastItem = state.toDisplayArray[state.toDisplayArray.length - 1];
+    const isLastItemOperator =
+      operatorsAll.includes(lastItem) || lastItem === "x";
+
+    if (isLastItemOperator) {
+      // Special case: if last was "%" and current is NOT "%", allow it (like "9%+")
+      if (lastItem === "%" && displayOperator !== "%") {
+        state.toDisplayArray.push(displayOperator);
+      } else {
+        // Normal case: replace the last operator
+        state.toDisplayArray[state.toDisplayArray.length - 1] = displayOperator;
+      }
+      state.screenDisplay = state.toDisplayArray.join("");
+      state.lastAction = "operator"; // Added state tracking
+      return;
     }
 
+    //Prevent invalid starts - FIXED: include "x" in check and array length
+    if (
+      state.currentInput === "" &&
+      state.toDisplayArray.length === 0 && // Added this condition
+      (invalidStartOperator.includes(displayOperator) ||
+        displayOperator === "x") // Added "x" check
+    ) {
+      state.screenDisplay = "0";
+      return; // Cleaner return style
+    }
+
+    // Add new operator
+    state.toDisplayArray.push(displayOperator);
     state.screenDisplay = state.toDisplayArray.join("");
+
+    //Updates the lastAction in the state
+    state.lastAction = "operator";
   } catch (error) {
     console.log(error);
   }

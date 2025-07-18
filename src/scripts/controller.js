@@ -1,4 +1,3 @@
-import "../sass/style.scss";
 import view from "./views/View";
 import * as model from "./model";
 
