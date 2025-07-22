@@ -112,4 +112,11 @@ export const handleOperator = function (operator) {
   }
 };
 
-const handleEquals = function () {};
+const handleEquals = function () {
+  try {
+    state.toDisplayArray = [...state.toDisplayArray, state.currentInput];
+    const result = evaluate(state.toDisplayArray.join(""));
+    state.result = result;
+    state.hasResult = true;
+  } catch (error) {}
+};
