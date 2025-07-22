@@ -46,6 +46,11 @@ export const handleOperator = function (operator) {
     if (state.screenDisplay && state.screenDisplay.length > 12) return;
 
     //Ignores the equal sign operator
+    // if (operator === "=") {
+    //   handleEquals();
+    //   return;
+    // }
+
     if (operator === "=") {
       handleEquals();
       return;
