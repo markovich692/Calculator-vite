@@ -147,18 +147,15 @@ const handleEquals = function () {
     }
 
     //Replace all the x operators by * and evaluates the expression
-    const evaluateExpression = evealuate(
+    const evaluateExpression = evaluate(
       state.toDisplayArray.join("").replaceAll("x", "*")
     );
+
+    //Updates the state object
+    state.result = evaluateExpression;
+    state.screenDisplay = String(evaluateExpression);
+    state.toDisplayArray = String(evaluateExpression);
   } catch (err) {
     console.log(err);
   }
 };
-
-/*
-const calculationResult = evaluate(state.toDisplayArray.join(""));
-    state.result = calculationResult;
-    state.screenDisplay = String(calculationResult);
-    state.result = true;
-    state.currentInput = String(calculationResult);
-*/
