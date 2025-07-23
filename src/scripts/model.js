@@ -45,12 +45,6 @@ export const handleOperator = function (operator) {
     //Prevents overflowing
     if (state.screenDisplay && state.screenDisplay.length > 12) return;
 
-    //Ignores the equal sign operator
-    // if (operator === "=") {
-    //   handleEquals();
-    //   return;
-    // }
-
     if (operator === "=") {
       handleEquals();
       return;
@@ -141,7 +135,7 @@ const handleEquals = function () {
     //Handle single number case
     if (
       state.toDisplayArray.length === 1 &&
-      typeof state.toDisplayArray[0] === "Number"
+      typeof state.toDisplayArray[0] === "number"
     ) {
       state.screenDisplay = state.toDisplayArray[0];
     }
