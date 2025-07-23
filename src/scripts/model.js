@@ -44,8 +44,15 @@ export const handleOperator = function (operator) {
   try {
     console.log(operator);
 
+    //Resets the state
     if (operator === "AC") {
       handleAllClear();
+      return;
+    }
+
+    //Adds condition to handle CE
+    if (operator === "CE") {
+      handleClearEntry();
       return;
     }
 
@@ -202,4 +209,20 @@ export const handleAllClear = function () {
   state.result = null;
   state.hasResult = false;
   state.lastAction = null;
+};
+
+export const handleClearEntry = function () {
+
+  if (state.lastAction === "equals") {
+    state.currentInput = "";
+    state.screenDisplay = "0";
+    state.result = null;
+    state.hasResult = false;
+
+    console.log(state);
+  }
+
+  
+
+
 };
