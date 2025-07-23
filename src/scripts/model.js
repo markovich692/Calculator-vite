@@ -133,11 +133,10 @@ const handleEquals = function () {
     }
 
     //Handle single number case
-    if (
-      state.toDisplayArray.length === 1 &&
-      typeof state.toDisplayArray[0] === "number"
-    ) {
-      state.screenDisplay = state.toDisplayArray[0];
+    if (state.toDisplayArray.length === 1) {
+      state.result = state.toDisplayArray[0];
+      state.screenDisplay = String(state.toDisplayArray[0]);
+      state.toDisplayArray = String(state.toDisplayArray[0]);
     }
 
     //Replace all the x operators by * and evaluates the expression
