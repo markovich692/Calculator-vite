@@ -119,7 +119,9 @@ const handleEquals = function () {
     //Adds currentInput to the toDisplayArray if there is one
 
     if (state.currentInput !== "")
-      state.toDisplayArray.push(state.toDisplayArray);
+      state.toDisplayArray.push(state.currentInput);
+
+    console.log(state);
   } catch (err) {
     console.log(err);
   }
