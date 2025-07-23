@@ -138,8 +138,13 @@ const handleEquals = function () {
       );
     }
 
-//
-
+    //Handle single number case
+    if (
+      state.toDisplayArray.length === 1 &&
+      typeof state.toDisplayArray[0] === "Number"
+    ) {
+      state.screenDisplay = state.toDisplayArray[0];
+    }
 
     console.log(state.toDisplayArray);
   } catch (err) {
