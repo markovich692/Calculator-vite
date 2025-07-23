@@ -108,6 +108,9 @@ export const handleOperator = function (operator) {
     //Updates the lastAction in the state
     state.lastAction = "operator";
 
+    //updates currentOperator;
+    state.currentOperator = displayOperator;
+
     console.log(state);
   } catch (error) {
     console.log(error);
@@ -123,14 +126,31 @@ const handleEquals = function () {
     //Prevents to perform the evaluation if there is nothing to calculate
     if (!state.toDisplayArray.length) return;
 
-    const calculationResult = evaluate(state.toDisplayArray.join(""));
-    state.result = calculationResult;
-    state.screenDisplay = String(calculationResult);
-    state.result = true;
-    state.currentInput = String(calculationResult);
+    //Remove trailing operators from toDisplayArray
+    if (
+      [...operatorsAll]
+        .slice(0, 5)
+        .includes(state.toDisplayArray[state.toDisplayArray.length - 1])
+    ) {
+      state.toDisplayArray = state.toDisplayArray.slice(
+        0,
+        state.toDisplayArray.length - 1
+      );
+    }
 
-    console.log(state);
+//
+
+
+    console.log(state.toDisplayArray);
   } catch (err) {
     console.log(err);
   }
 };
+
+/*
+const calculationResult = evaluate(state.toDisplayArray.join(""));
+    state.result = calculationResult;
+    state.screenDisplay = String(calculationResult);
+    state.result = true;
+    state.currentInput = String(calculationResult);
+*/
