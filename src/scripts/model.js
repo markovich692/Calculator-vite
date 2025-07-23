@@ -42,7 +42,9 @@ export const handleDigits = function (digit) {
 //OPERATOR
 export const handleOperator = function (operator) {
   try {
-    if (currentOperator === "AC") {
+    console.log(operator);
+
+    if (operator === "AC") {
       handleAllClear();
       return;
     }
@@ -121,7 +123,7 @@ export const handleOperator = function (operator) {
   }
 };
 
-const handleEquals = function () {
+export const handleEquals = function () {
   try {
     //Adds currentInput to the toDisplayArray if there is one
     if (state.currentInput !== "")
@@ -190,4 +192,14 @@ const handleEquals = function () {
   } catch (err) {
     console.log(err);
   }
+};
+
+export const handleAllClear = function () {
+  state.currentInput = "";
+  state.currentOperator = null;
+  state.toDisplayArray = [];
+  state.screenDisplay = "0";
+  state.result = null;
+  state.hasResult = false;
+  state.lastAction = null;
 };
