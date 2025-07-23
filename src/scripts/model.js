@@ -231,5 +231,10 @@ export const handleClearEntry = function () {
 
     // Updates the display
     state.screenDisplay = state.toDisplayArray.join("") || "0";
+
+    //Updates the lastAction
+    state.lastAction = state.toDisplayArray.length > 0 ? "digit" : null;
+
+    return;
   }
 };
