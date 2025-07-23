@@ -42,21 +42,19 @@ export const handleDigits = function (digit) {
 //OPERATOR
 export const handleOperator = function (operator) {
   try {
+    if (currentOperator === "AC") {
+      handleAllClear();
+      return;
+    }
+
     //Prevents overflowing
     if (state.screenDisplay && state.screenDisplay.length > 12) return;
 
     //Improves the UX, allowing to directly perform the operation adding to the result
-    if (
-      state.hasResult === true &&
-      [...operatorsAll].slice(0, 5).includes(operator)
-    ) {
-      state.toDisplayArray = [];
-      state.toDisplayArray.push(String(state.result));
-      console.log(state);
+    if (state.hasResult === true && operator !== "=") {
+      state.toDisplayArray = [String(state.result)];
       state.currentInput = "";
       state.hasResult = false;
-
-      console.log(state);
     }
 
     if (operator === "=") {
@@ -118,8 +116,6 @@ export const handleOperator = function (operator) {
 
     //updates currentOperator;
     state.currentOperator = displayOperator;
-
-    console.log(state);
   } catch (error) {
     console.log(error);
   }
@@ -191,7 +187,6 @@ const handleEquals = function () {
     state.currentInput = "";
     state.hasResult = true;
     state.lastAction = "equals";
-    console.log(state);
   } catch (err) {
     console.log(err);
   }
