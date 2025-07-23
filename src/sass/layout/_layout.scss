@@ -56,11 +56,17 @@
     background-color: #fff;
     font-family: inherit;
     border: none;
-    border-radius: 15px;
+    // border-radius: 6px;
 
     &--op {
       color: $color-primary;
       letter-spacing: 1px;
+
+      &:hover {
+        // background-color: #c3fae8;
+        background-color: $color-btn-op-hover;
+        color: #fff;
+      }
     }
 
     &--digit {
