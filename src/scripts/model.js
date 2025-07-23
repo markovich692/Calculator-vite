@@ -42,8 +42,6 @@ export const handleDigits = function (digit) {
 //OPERATOR
 export const handleOperator = function (operator) {
   try {
-    console.log(operator);
-
     //Resets the state
     if (operator === "AC") {
       handleAllClear();
@@ -212,7 +210,6 @@ export const handleAllClear = function () {
 };
 
 export const handleClearEntry = function () {
-
   if (state.lastAction === "equals") {
     state.currentInput = "";
     state.screenDisplay = "0";
@@ -229,6 +226,7 @@ export const handleClearEntry = function () {
   }
 
   if (state.lastAction === "operator") {
-    console.log(state);
+    // Removes the last operator
+    state.toDisplayArray.pop();
   }
 };
