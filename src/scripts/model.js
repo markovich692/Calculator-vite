@@ -117,38 +117,20 @@ export const handleOperator = function (operator) {
 const handleEquals = function () {
   try {
     //Adds currentInput to the toDisplayArray if there is one
-
     if (state.currentInput !== "")
       state.toDisplayArray.push(state.currentInput);
+
+    //Prevents to perform the evaluation if there is nothing to calculate
+    if (!state.toDisplayArray.length) return;
+
+    const calculationResult = evaluate(state.toDisplayArray.join(""));
+    state.result = calculationResult;
+    state.screenDisplay = String(calculationResult);
+    state.result = true;
+    state.currentInput = String(calculationResult);
 
     console.log(state);
   } catch (err) {
     console.log(err);
   }
 };
-
-/*
-state.currentOperator = "=";
-    if (state.currentInput === "") return;
-
-    //Displays the current operator if there is a result and the length of the array is 1
-    if (state.hasResult && state.toDisplayArray.length === 1) return;
-
-    console.log(state);
-
-    //Prevents trailing operators
-    if (
-      operatorsAll.includes(
-        state.toDisplayArray[state.toDisplayArray.length - 1]
-      ) &&
-      state.toDisplayArray[state.toDisplayArray.length - 1] !== "="
-    ) {
-      throw new Error("Error");
-      return;
-    }
-
-    if (state.toDisplayArray.length === 1) {
-      state.screenDisplay = state.currentInput;
-      state.hasResult = true;
-    }
-  */
