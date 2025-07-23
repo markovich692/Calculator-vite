@@ -146,7 +146,10 @@ const handleEquals = function () {
       state.screenDisplay = state.toDisplayArray[0];
     }
 
-    console.log(state.toDisplayArray);
+    //Replace all the x operators by * and evaluates the expression
+    const evaluateExpression = evealuate(
+      state.toDisplayArray.join("").replaceAll("x", "*")
+    );
   } catch (err) {
     console.log(err);
   }
