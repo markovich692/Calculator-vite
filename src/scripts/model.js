@@ -144,10 +144,27 @@ const handleEquals = function () {
       state.toDisplayArray.join("").replaceAll("x", "*")
     );
 
+    //Handles division by zero
+    if (!isFinite(evaluateExpression)) {
+      state.screenDisplay = "Error";
+
+      state.currentInput = "";
+      state.currentOperator = null;
+      state.toDisplayArray = [];
+      state.screenDisplay = "0";
+      state.result = null;
+      state.hasResult = false;
+      state.lastAction = null;
+
+      return;
+    }
+
     //Updates the state object
     state.result = evaluateExpression;
     state.screenDisplay = String(evaluateExpression);
-    state.toDisplayArray = String(evaluateExpression);
+    state.currentInput = "";
+    state.hasResult = true;
+    state.lastAction = "equals";
   } catch (err) {
     console.log(err);
   }
