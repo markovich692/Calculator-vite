@@ -54,6 +54,24 @@ export const handleOperator = function (operator) {
       return;
     }
 
+    //Handles the percentage operator
+
+    if (operator === "%") {
+      if (state.currentInput !== "") {
+        // Simply convert to percentage (divide by 100)
+        const percentValue = parseFloat(state.currentInput) / 100;
+        state.currentInput = String(percentValue);
+
+        state.screenDisplay = [
+          ...state.toDisplayArray,
+          state.currentInput,
+        ].join("");
+        state.lastAction = "digit";
+        return;
+      }
+      return;
+    }
+
     //Prevents overflowing
     if (state.screenDisplay && state.screenDisplay.length > 12) return;
 
