@@ -136,7 +136,12 @@ const handleEquals = function () {
     if (state.toDisplayArray.length === 1) {
       state.result = state.toDisplayArray[0];
       state.screenDisplay = String(state.toDisplayArray[0]);
-      state.toDisplayArray = String(state.toDisplayArray[0]);
+
+      //Updates the state
+      state.currentInput = "";
+      state.hasResult = true;
+      state.lastAction = "equals";
+      return;
     }
 
     //Replace all the x operators by * and evaluates the expression
@@ -159,9 +164,11 @@ const handleEquals = function () {
       return;
     }
 
+    let evaluatedExpression = evaluateExpression.slice(0, 12);
+
     //Updates the state object
-    state.result = evaluateExpression;
-    state.screenDisplay = String(evaluateExpression);
+    state.result = evaluatedExpression;
+    state.screenDisplay = String(evaluatedExpression);
     state.currentInput = "";
     state.hasResult = true;
     state.lastAction = "equals";
