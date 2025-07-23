@@ -107,6 +107,8 @@ export const handleOperator = function (operator) {
 
     //Updates the lastAction in the state
     state.lastAction = "operator";
+
+    console.log(state);
   } catch (error) {
     console.log(error);
   }
@@ -114,9 +116,37 @@ export const handleOperator = function (operator) {
 
 const handleEquals = function () {
   try {
-    state.toDisplayArray = [...state.toDisplayArray, state.currentInput];
-    const result = evaluate(state.toDisplayArray.join(""));
-    state.result = result;
-    state.hasResult = true;
-  } catch (error) {}
+    //Adds currentInput to the toDisplayArray if there is one
+
+    if (state.currentInput !== "")
+      state.toDisplayArray.push(state.toDisplayArray);
+  } catch (err) {
+    console.log(err);
+  }
 };
+
+/*
+state.currentOperator = "=";
+    if (state.currentInput === "") return;
+
+    //Displays the current operator if there is a result and the length of the array is 1
+    if (state.hasResult && state.toDisplayArray.length === 1) return;
+
+    console.log(state);
+
+    //Prevents trailing operators
+    if (
+      operatorsAll.includes(
+        state.toDisplayArray[state.toDisplayArray.length - 1]
+      ) &&
+      state.toDisplayArray[state.toDisplayArray.length - 1] !== "="
+    ) {
+      throw new Error("Error");
+      return;
+    }
+
+    if (state.toDisplayArray.length === 1) {
+      state.screenDisplay = state.currentInput;
+      state.hasResult = true;
+    }
+  */
