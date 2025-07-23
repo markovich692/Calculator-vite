@@ -228,5 +228,8 @@ export const handleClearEntry = function () {
   if (state.lastAction === "operator") {
     // Removes the last operator
     state.toDisplayArray.pop();
+
+    // Updates the display
+    state.screenDisplay = state.toDisplayArray.join("") || "0";
   }
 };
