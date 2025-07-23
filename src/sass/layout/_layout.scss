@@ -56,16 +56,19 @@
     background-color: #fff;
     font-family: inherit;
     border: none;
-    // border-radius: 6px;
+    transition: all 0.2s;
 
     &--op {
       color: $color-primary;
       letter-spacing: 1px;
 
       &:hover {
-        // background-color: #c3fae8;
-        background-color: $color-btn-op-hover;
+        background-color: $color-primary;
         color: #fff;
+      }
+
+      &:active {
+        background-color: #4dabf7;
       }
     }
 
@@ -75,6 +78,10 @@
       &:hover {
         background-color: $color-primary;
         color: #fff;
+      }
+
+      &:active {
+        background-color: #4dabf7;
       }
     }
   }
