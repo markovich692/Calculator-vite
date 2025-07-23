@@ -212,18 +212,23 @@ export const handleAllClear = function () {
 };
 
 export const handleClearEntry = function () {
-  console.log(state);
 
   if (state.lastAction === "equals") {
     state.currentInput = "";
     state.screenDisplay = "0";
     state.result = null;
     state.hasResult = false;
+    state.lastAction = null;
+    return;
   }
 
   if (state.currentInput !== "") {
     state.currentInput = "";
-    state.screenDisplay = state.toDisplayArray.join("") || 0;
+    state.screenDisplay = state.toDisplayArray.join("") || "0";
     return;
+  }
+
+  if (state.lastAction === "operator") {
+    console.log(state);
   }
 };
