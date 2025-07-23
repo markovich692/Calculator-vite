@@ -57,18 +57,7 @@ export const handleOperator = function (operator) {
     //Handles the percentage operator
 
     if (operator === "%") {
-      if (state.currentInput !== "") {
-        // Simply convert to percentage (divide by 100)
-        const percentValue = parseFloat(state.currentInput) / 100;
-        state.currentInput = String(percentValue);
-
-        state.screenDisplay = [
-          ...state.toDisplayArray,
-          state.currentInput,
-        ].join("");
-        state.lastAction = "digit";
-        return;
-      }
+      handlePercentage();
       return;
     }
 
@@ -259,6 +248,20 @@ export const handleClearEntry = function () {
     state.toDisplayArray.pop();
     state.screenDisplay = state.toDisplayArray.join("") || "0";
     state.lastAction = state.toDisplayArray.length > 0 ? "digit" : null;
+    return;
+  }
+};
+
+export const handlePercentage = function () {
+  if (state.currentInput !== "") {
+    //Converts to percentage (divide by 100)
+    const percentValue = parseFloat(state.currentInput) / 100;
+    state.currentInput = String(percentValue);
+
+    state.screenDisplay = [...state.toDisplayArray, state.currentInput].join(
+      ""
+    );
+    state.lastAction = "digit";
     return;
   }
 };
