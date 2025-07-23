@@ -45,6 +45,20 @@ export const handleOperator = function (operator) {
     //Prevents overflowing
     if (state.screenDisplay && state.screenDisplay.length > 12) return;
 
+    //Improves the UX, allowing to directly perform the operation adding to the result
+    if (
+      state.hasResult === true &&
+      [...operatorsAll].slice(0, 5).includes(operator)
+    ) {
+      state.toDisplayArray = [];
+      state.toDisplayArray.push(String(state.result));
+      console.log(state);
+      state.currentInput = "";
+      state.hasResult = false;
+
+      console.log(state);
+    }
+
     if (operator === "=") {
       handleEquals();
       return;
@@ -156,7 +170,6 @@ const handleEquals = function () {
       state.currentInput = "";
       state.currentOperator = null;
       state.toDisplayArray = [];
-      state.screenDisplay = "0";
       state.result = null;
       state.hasResult = false;
       state.lastAction = null;
@@ -164,14 +177,21 @@ const handleEquals = function () {
       return;
     }
 
-    let evaluatedExpression = evaluateExpression.slice(0, 12);
+    let formattedResult = String(evaluateExpression);
+    if (formattedResult.length > 12) {
+      formattedResult = evaluateExpression.toExponential(6);
+      if (formattedResult.length > 12) {
+        formattedResult = "Error";
+      }
+    }
 
     //Updates the state object
-    state.result = evaluatedExpression;
-    state.screenDisplay = String(evaluatedExpression);
+    state.result = formattedResult;
+    state.screenDisplay = formattedResult;
     state.currentInput = "";
     state.hasResult = true;
     state.lastAction = "equals";
+    console.log(state);
   } catch (err) {
     console.log(err);
   }
