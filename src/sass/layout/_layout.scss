@@ -2,9 +2,8 @@
 
 .container {
   background-color: $color-primary;
-  max-width: 56rem;
-  min-height: 65rem;
-  // min-height: 100vh;
+  width: 52rem;
+  min-height: 62rem;
   margin: 9rem auto;
   border-radius: 50px;
   display: flex;
@@ -16,7 +15,7 @@
 .screen {
   width: 100%;
   height: 28rem;
-  padding: 10.1rem 6.1rem 5.1rem 6.1rem;
+  padding: 10.1rem 3.2rem 5.1rem 3.2rem;
   display: flex;
   justify-content: center;
   align-items: center;
