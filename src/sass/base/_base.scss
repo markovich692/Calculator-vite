@@ -17,19 +17,27 @@ html {
   }
 
   @media only screen and (max-width: $tab-land) {
-    font-size: 94.5%;
-  }
-
-  @media only screen and (max-width: $tab-land) {
-    font-size: 92.5%;
+    font-size: 98.5%;
   }
 
   @media only screen and (max-width: $tab-port) {
     font-size: 90.5%;
   }
 
+  @media only screen and (max-width: $tab-medium) {
+    font-size: 78.5%;
+  }
+
+  @media only screen and (max-width: $tab-small) {
+    font-size: 73.5%;
+  }
+
   @media only screen and (max-width: $phone) {
     font-size: 47.5%;
+  }
+
+  @media only screen and (max-width: $phone-small) {
+    font-size: 43.5%;
   }
 }
 
