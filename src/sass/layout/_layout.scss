@@ -58,6 +58,10 @@
     border: none;
     transition: all 0.2s;
 
+    @media only screen and (max-width: $phone) {
+      font-size: 2.8rem;
+    }
+
     &--op {
       color: $color-primary;
       letter-spacing: 1px;
